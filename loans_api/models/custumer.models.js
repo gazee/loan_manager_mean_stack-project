@@ -9,5 +9,7 @@ const customerschema =mongoose.Schema({
 }) 
 
 const customerModel =mongoose.model('customer',customerschema);
+//customer' => collection name
+
 
 module.exports =customerModel;

@@ -11,6 +11,7 @@ var loanRouter = require('./routes/loans');
 var mongoose =require('mongoose')
 
 mongoose.connect('mongodb://localhost/loans_manager');
+// loans_manager => db name
 
 var app = express();
 
