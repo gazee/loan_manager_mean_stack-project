@@ -3,17 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var customerRouter = require('./routes/customer');
 var loanRouter = require('./routes/loans');
 var mongoose =require('mongoose')
+var cors=require('cors');
 
 mongoose.connect('mongodb://localhost/loans_manager');
 // loans_manager => db name
 
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
