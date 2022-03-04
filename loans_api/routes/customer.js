@@ -12,19 +12,23 @@ router.get('/list', function(req, res, next) {
     }else{
       const recordCount=customerListResponse.length;
       res.send({status:200,recordCount:recordCount,results:customerListResponse});
+      
     } 
   })
 });
 
 /* GET read specifc customer||route=/customer/list*/
-router.get('/view', function(req, res, next) {
-  const userId =req.query.userId
+router.get('/view/:id', function(req, res, next) {
+  const userId =req.params.id
+  // const userId =id
+  console.log('id from api',userId)
   customerModel.findById(userId,function(err,customerResponse){
     //here 1st argument is query
     if(err){
       res.send({status:500,message:"unable to find the customer customer"})
     }else{
-      res.send({status:200,results:customerResponse});
+      res.send({status:200,message:"feching is done",results:customerResponse});
+      console.log('from api',customerResponse)
     } 
   })
 });

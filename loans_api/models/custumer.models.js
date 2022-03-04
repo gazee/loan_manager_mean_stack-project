@@ -1,10 +1,10 @@
 const mongoose =require('mongoose');
 
 const customerschema =mongoose.Schema({
-    firstName:String,
-    lastName:String,
-    emailAdderess:String,
-    phoneNumber:String,
+    firstname:String,
+    lastname:String,
+    emailadderess:String,
+    phonenumber:String,
     dob :String
 }) 
 
