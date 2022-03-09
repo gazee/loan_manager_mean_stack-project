@@ -17,30 +17,33 @@ router.get('/list', function(req, res, next) {
   })
 });
 
-/* GET read specifc customer||route=/customer/list*/
+/* GET read specifc customer||route=/customer/view*/
 router.get('/view/:id', function(req, res, next) {
-  const userId =req.params.id
-  // const userId =id
-  console.log('id from api',userId)
-  customerModel.findById(userId,function(err,customerResponse){
+  //  const userId =req.params.id ;
+    const userId ='622204d520ec281fa1229024'
+  // console.log('id from api',userId)
+
+    customerModel.findById(userId,function(err,customerResponse){
     //here 1st argument is query
     if(err){
       res.send({status:500,message:"unable to find the customer customer"})
     }else{
       res.send({status:200,message:"feching is done",results:customerResponse});
-      console.log('from api',customerResponse)
+      // console.log('from api',customerResponse)
     } 
   })
 });
 /* Post creating new customer ||route=/customer/add */
 router.post('/add', function(req, res, next) {
+    // let customerObj =req.body
+    // console.log('from api',emp)
   let customerObj =new customerModel({
 
-    firstName:"ariya",
-    lastName:"sugunan",
-    emailAdderess:"jithin@jsnvd",
-    phoneNumber:"9895576600",
-    dob :12-12-1997 
+    firstname:req.body.firstName,
+    lastname:req.body.lastName,
+    emailadderess:req.body.emailAdderess,
+    phonenumber:req.body.phoneNumber,
+    dob :req.body.dob
   });
   customerObj.save((err,customerObj)=>{
     //here save is a callback methord 
@@ -53,6 +56,7 @@ router.post('/add', function(req, res, next) {
   })
   
 });
+
 /* edit customer ||route=/customer/edit */
 router.put('/edit', function(req, res, next) {
   const userId =req.query.userId
@@ -75,6 +79,7 @@ router.put('/edit', function(req, res, next) {
 });
 /* delaete customer. ||route=/customer/delete */
 router.delete('/delete', function(req, res, next) {
+
   const userId =req.query.userId
   customerModel.findByIdAndDelete(userId,function(err,customerResponse){
     //here 1st argument is query
@@ -98,6 +103,7 @@ router.delete('/delete-multtiple', function(req, res, next) {
     } 
   })
 });
+
 /* search sustomer ||route=/customer/search */
 router.get('/search', function(req, res, next) {
   res.send('respond with a resource');
